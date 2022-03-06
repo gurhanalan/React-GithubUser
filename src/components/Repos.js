@@ -43,39 +43,34 @@ const Repos = () => {
         .slice(0, 5)
         .map((item) => ({ ...item, value: item.stars }));
 
-    // Dummy Data
-    const chartData = [
-        {
-            label: "Venezuela",
-            value: "290",
+    // Stars and Forks
+    let { stars, forks } = repos.reduce(
+        (total, item) => {
+            const { stargazers_count, name, forks } = item;
+            total.stars[stargazers_count] = {
+                label: name,
+                value: stargazers_count,
+            };
+            total.forks[forks] = {
+                label: name,
+                value: forks,
+            };
+
+            return total;
         },
-        {
-            label: "Saudi",
-            value: "260",
-        },
-        {
-            label: "Canada",
-            value: "180",
-        },
-        {
-            label: "Iran",
-            value: "140",
-        },
-        {
-            label: "Russia",
-            value: "115",
-        },
-    ];
+        { stars: {}, forks: {} }
+    );
+    stars = Object.values(stars).slice(-5).reverse();
+    forks = Object.values(forks).slice(-5).reverse();
 
     return (
         <section className="section">
             <Wrapper className="section-center">
-                {/* <ExampleChart data={chartData} /> */}
                 <Pie3D data={mostUsed} />
-                <Column3D data={chartData} />
+                <Column3D data={stars} />
 
                 <Doughnut2D data={mostStars} />
-                <Bar3D data={chartData} />
+                <Bar3D data={forks} />
             </Wrapper>
         </section>
     );
