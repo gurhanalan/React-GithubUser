@@ -19,7 +19,7 @@ const GithubProvider = ({ children }) => {
     const searchGithubUser = async (user) => {
         toggleError();
         setIsLoading(true);
-        // set loading
+
         const response = await axios(`${rootUrl}/users/${user}`).catch(
             (err) => {
                 console.log(err);
@@ -28,6 +28,18 @@ const GithubProvider = ({ children }) => {
 
         if (response) {
             setGithubUser(response.data);
+            const { login, followers_url } = response.data;
+            // repos
+            axios(`${rootUrl}/users/${login}/repos?per_page=100`).then(
+                (response) => {
+                    setRepos(response.data);
+                }
+            );
+
+            // followers
+            axios(`${followers_url}?per_page=100`).then((response) => {
+                setFollowers(response.data);
+            });
         } else {
             toggleError(true, "there is no user with that username");
         }
