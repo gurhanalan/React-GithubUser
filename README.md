@@ -1,6 +1,6 @@
 # React - GithubUser
 
-[This project](https://gurhanalan.github.io/React-GithubUser/) is component that lists Github user information from Github API, and presents the info in a dashboard to the user. This component is build with using React.
+[This project](https://gurhan-react-githubusers-search.netlify.app) is component that lists Github user information from Github API, and presents the info in a dashboard to the user. This component is build with using React.
 
 ## Table of contents
 
@@ -32,7 +32,7 @@ Users should be able to:
 
 ### Links
 
--   Solution URL: [Live Website](https://gurhanalan.github.io/React-GithubUser/)
+-   Solution URL: [Live Website](https://gurhan-react-githubusers-search.netlify.app)
 
 ## My process
 
